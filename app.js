@@ -1,7 +1,1 @@
-const fs = require("fs");
-const http = require("http");
-const routes = require("./routes.js");
-
-const server = http.createServer(routes);
-
-server.listen(3001);
+require("./section-3/assignment.js");
