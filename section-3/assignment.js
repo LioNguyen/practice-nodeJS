@@ -36,7 +36,6 @@ const server = http.createServer((req, res) => {
       try {
         const parsedBody = Buffer.concat(body).toString();
         const message = parsedBody.split("=")[1];
-        console.log("message", message);
       } catch (error) {
         console.log("error", error);
       }
@@ -49,4 +48,4 @@ const server = http.createServer((req, res) => {
   }
 });
 
-server.listen(3000);
+server.listen(3001);

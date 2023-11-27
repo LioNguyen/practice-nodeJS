@@ -10,8 +10,9 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
     - [2. Parsing request body](#2-parsing-request-body)
       - [Request \& Response](#request--response)
       - [How to handle request body](#how-to-handle-request-body)
-    - [3. Blocking and none blocking code](#3-blocking-and-none-blocking-code)
+    - [3. Blocking and none-blocking code](#3-blocking-and-none-blocking-code)
     - [4. Using node modules system](#4-using-node-modules-system)
+  - [Section 4: Improved Development Workflow and Debugging](#section-4-improved-development-workflow-and-debugging)
 
 ## Section 3: Understanding the Basics
 
@@ -69,7 +70,28 @@ server = http.createServer((req, res) => {
 });
 ```
 
-### 3. Blocking and none blocking code
+### 3. Blocking and none-blocking code
+
+```js
+const fs = require("fs");
+
+/**
+ * This is a blocking code, writeFileSync will block the execution of the code until the file is created
+ */
+fs.writeFileSync("message.txt", message);
+res.statusCode = 302;
+res.setHeader("Location", "/");
+return res.end();
+
+/**
+ * This is a non-blocking code, writeFile will not block the execution of the code until the file is created
+ */
+fs.writeFile("message.txt", message, (err) => {
+  res.statusCode = 302;
+  res.setHeader("Location", "/");
+  return res.end();
+});
+```
 
 ### 4. Using node modules system
 
@@ -88,3 +110,10 @@ module.exports.someText = "Some hard coded text";
 exports.handler = requestHandler;
 exports.someText = "Some hard coded text";
 ```
+
+![Core Modules](assets/images/Section%203%20-%20Core%20Modules.png)
+
+## Section 4: Improved Development Workflow and Debugging
+
+![Type of Errors](assets/images/Section%204%20-%20Type%20of%20Errors.png)
+![Summary](assets/images/Section%204%20-%20Summary.png)
