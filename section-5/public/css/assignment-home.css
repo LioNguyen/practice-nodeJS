@@ -1,0 +1,11 @@
+ul {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  gap: 1rem;
+  list-style: none;
+}
+
+ul a {
+  text-decoration: none;
+}
