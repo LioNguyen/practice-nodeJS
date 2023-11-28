@@ -16,6 +16,7 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
   - [Section 5: Express.js](#section-5-expressjs)
     - [How to use](#how-to-use)
     - [How to create routes](#how-to-create-routes)
+  - [Section 6: Dynamic Content and Templating Engines](#section-6-dynamic-content-and-templating-engines)
 
 ## Section 3: Understanding the Basics
 
@@ -199,3 +200,7 @@ router.post("/add-product", (req, res, next) => {
 
 module.exports = router;
 ```
+
+## Section 6: Dynamic Content and Templating Engines
+
+[pug](https://pugjs.org/api/getting-started.html)
