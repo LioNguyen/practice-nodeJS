@@ -1,3 +1,21 @@
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400&family=Poppins&family=Roboto&display=swap');
+/* Your CSS styles here */
+body {
+    font-family: 'Poppins', sans-serif;
+    line-height: 1.6;
+    /* Other styles */
+}
+
+a, li {
+  text-decoration: none;
+}
+
+li {
+  list-style-type: circle;
+}
+</style>
+
 # practice-nodeJS
 
 https://www.udemy.com/course/nodejs-the-complete-guide/
@@ -31,12 +49,17 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
     - [1. Routing request](#1-routing-request)
     - [2. Parsing request body](#2-parsing-request-body)
       - [Request \& Response](#request--response)
-      - [How to handle request body](#how-to-handle-request-body)
+      - [How to parse request body using chunk and Buffer](#how-to-parse-request-body-using-chunk-and-buffer)
     - [3. Blocking and none-blocking code](#3-blocking-and-none-blocking-code)
     - [4. Using node modules system](#4-using-node-modules-system)
   - [Section 4: Improved Development Workflow and Debugging](#section-4-improved-development-workflow-and-debugging)
+    - [Summary](#summary)
+    - [Type of Errors](#type-of-errors)
   - [Section 5: Express.js](#section-5-expressjs)
-    - [How to use](#how-to-use)
+    - [Summary](#summary-1)
+    - [How to add middleware to parses incoming request body using bodyParser](#how-to-add-middleware-to-parses-incoming-request-body-using-bodyparser)
+    - [How to add middleware to serve static files](#how-to-add-middleware-to-serve-static-files)
+    - [How to add custom middleware](#how-to-add-custom-middleware)
     - [How to create routes](#how-to-create-routes)
   - [Section 6: Dynamic Content and Templating Engines](#section-6-dynamic-content-and-templating-engines)
     - [How to apply engine](#how-to-apply-engine)
@@ -63,7 +86,7 @@ res.write("");
 res.end();
 ```
 
-#### How to handle request body
+#### How to parse request body using chunk and Buffer
 
 ```js
 const http = require("http");
@@ -143,15 +166,23 @@ exports.someText = "Some hard coded text";
 
 ## Section 4: Improved Development Workflow and Debugging
 
-![Type of Errors](assets/images/Section%204%20-%20Type%20of%20Errors.png)
+### Summary
+
 ![Summary](assets/images/Section%204%20-%20Summary.png)
+
+### Type of Errors
+
+![Type of Errors](assets/images/Section%204%20-%20Type%20of%20Errors.png)
 
 ## Section 5: Express.js
 
 [Express.js](https://expressjs.com/en/starter/installing.html)
+
+### Summary
+
 ![Summary](assets/images/Section%205%20-%20Summary.png)
 
-<b>Parses incoming request bodies</b>
+### How to add middleware to parses incoming request body using bodyParser
 
 bodyParser parses incoming request bodies in a middleware before your handlers, available under the <b><i>req.body</i></b> property.
 
@@ -165,7 +196,7 @@ app.use(bodyParser.urlencoded());
 app.use(bodyParser.urlencoded({ extended: false }));
 ```
 
-<b>Serve static files</b>
+### How to add middleware to serve static files
 
 express.static() is a middleware function that serves static files such as images, CSS files, and JavaScript files
 
@@ -176,7 +207,7 @@ const app = express();
 app.use(express.static(path.join(__dirname, "public")));
 ```
 
-### How to use
+### How to add custom middleware
 
 ```js
 // app.js
