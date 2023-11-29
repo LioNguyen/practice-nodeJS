@@ -25,6 +25,10 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
 <b>Tree Folder Structure</b>
 
 - Root folder
+  - controllers
+  - data
+    - \*.json
+  - models
   - public
     - css
       - \*.css
@@ -64,6 +68,8 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
   - [Section 6: Dynamic Content and Templating Engines](#section-6-dynamic-content-and-templating-engines)
     - [How to apply engine](#how-to-apply-engine)
     - [ejs syntax](#ejs-syntax)
+  - [Section 7: The Modal View Controller (MVC)](#section-7-the-modal-view-controller-mvc)
+    - [Summary](#summary-2)
 
 ## Section 3: Understanding the Basics
 
@@ -333,3 +339,11 @@ app.set("views", "section-6/views");
 </body>
 </html>
 ```
+
+## Section 7: The Modal View Controller (MVC)
+
+[Modal View Controller](https://developer.mozilla.org/en-US/docs/Glossary/MVC)
+
+### Summary
+
+![Summary](assets/images/Section%207%20-%20Summary.png)
