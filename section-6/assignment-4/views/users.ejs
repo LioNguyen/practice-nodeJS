@@ -1,0 +1,14 @@
+<%- include("includes/head.ejs") %>
+<body>
+  <%- include('includes/nav.ejs') %>
+  <% if(nameList.length > 0) { %>
+    <ul>
+      <% for(let i = 0; i < nameList.length; i++) { %>
+        <li><%= nameList[i] %></li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h1>No users found</h1>
+  <% } %>
+</body>
+</html>
