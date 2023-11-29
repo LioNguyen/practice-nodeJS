@@ -4,6 +4,28 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
 
 [HTTP Header](https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers)
 
+<b>Tree Folder Structure</b>
+
+- Root folder
+  - public
+    - css
+      - \*.css
+  - routes
+    - home.js
+  - util
+    - path.js
+  - views
+    - includes
+      - \*.ejs
+    - layouts
+      - \*.pug/hbs
+    - \*.html/ejs/pug/hbs
+  - app.js
+
+---
+
+<b>Table of Contents</b>
+
 - [practice-nodeJS](#practice-nodejs)
   - [Section 3: Understanding the Basics](#section-3-understanding-the-basics)
     - [1. Routing request](#1-routing-request)
@@ -17,6 +39,8 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
     - [How to use](#how-to-use)
     - [How to create routes](#how-to-create-routes)
   - [Section 6: Dynamic Content and Templating Engines](#section-6-dynamic-content-and-templating-engines)
+    - [How to apply engine](#how-to-apply-engine)
+    - [ejs syntax](#ejs-syntax)
 
 ## Section 3: Understanding the Basics
 
@@ -204,3 +228,77 @@ module.exports = router;
 ## Section 6: Dynamic Content and Templating Engines
 
 [pug](https://pugjs.org/api/getting-started.html)
+[handlebars](https://handlebarsjs.com/)
+[ejs](https://ejs.co/)
+
+### How to apply engine
+
+- app.engine() allows us to define a new template engine
+- app.engine(ext, callback)
+- ext: The extension to use for the newly created engine
+- hbs cannot have any logic, it just use true/false
+- ejs is `recommended`
+
+```js
+const express = require("express");
+const expressHbs = require("express-handlebars");
+
+const app = express();
+
+// This method is only used for hbs
+app.engine(
+  "hbs",
+  expressHbs({
+    layoutsDir: "section-6/views/layouts",
+    defaultLayout: "main-layout",
+    extname: "hbs",
+  })
+);
+
+app.set("view engine", "pug");
+app.set("view engine", "hbs");
+app.set("view engine", "ejs");
+
+app.set("views", "section-6/views");
+```
+
+### ejs syntax
+
+```ejs
+<!-- includes/head.ejs -->
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title><%= docTitle %></title>
+    <link rel="stylesheet" href="/css/main.css" />
+  </head>
+
+<!-- includes/nav.ejs -->
+<header>
+  <nav>
+    <ul>
+      <li><a href="/">Home</a></li>
+      <li><a href="/users">Users</a></li>
+    </ul>
+  </nav>
+</header>
+
+<!-- 404.ejs -->
+<%- include("includes/head.ejs") %>
+<body>
+  <%- include('includes/nav.ejs') %>
+  <% if(nameList.length > 0) { %>
+    <ul>
+      <% for(let i = 0; i < nameList.length; i++) { %>
+        <li><%= nameList[i] %></li>
+      <% } %>
+    </ul>
+  <% } else { %>
+    <h1>No users found</h1>
+  <% } %>
+</body>
+</html>
+```
