@@ -7,4 +7,6 @@
 // require("./section-6-templating-engines/app.js");
 // require("./section-6-templating-engines/assignment-4/app.js");
 
-require("./section-7-model-view-controller/app.js");
+// require("./section-7-model-view-controller/app.js");
+
+require("./section-8-enhance-app/app.js");
