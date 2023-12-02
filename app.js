@@ -9,4 +9,6 @@
 
 // require("./section-7-model-view-controller/app.js");
 
-require("./section-8-enhance-app/app.js");
+// require("./section-8-enhance-app/app.js");
+
+require("./section-9-dynamic-routes-and-advance-models/app.js");

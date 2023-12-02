@@ -24,6 +24,8 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
 
 <b>Tree Folder Structure</b>
 
+Model View Controller (MVC): Model + View -> Controller -> Routes
+
 - Root folder
   - controllers
   - data
@@ -70,6 +72,13 @@ https://www.udemy.com/course/nodejs-the-complete-guide/
     - [ejs syntax](#ejs-syntax)
   - [Section 7: The Modal View Controller (MVC)](#section-7-the-modal-view-controller-mvc)
     - [Summary](#summary-2)
+  - [Section 9: Dynamics Routes and Advance Models](#section-9-dynamics-routes-and-advance-models)
+    - [Summary](#summary-3)
+  - [Section 10 : SQL - Structure Query Language](#section-10--sql---structure-query-language)
+    - [SQL vs NoSQL](#sql-vs-nosql)
+    - [What's SQL](#whats-sql)
+    - [Core SQL Database Characteristics](#core-sql-database-characteristics)
+    - [SQL Queries](#sql-queries)
 
 ## Section 3: Understanding the Basics
 
@@ -347,3 +356,27 @@ app.set("views", "section-6/views");
 ### Summary
 
 ![Summary](assets/images/Section%207%20-%20Summary.png)
+
+## Section 9: Dynamics Routes and Advance Models
+
+### Summary
+
+![Summary](assets/images/Section%209%20-%20Summary.png)
+
+## Section 10 : SQL - Structure Query Language
+
+### SQL vs NoSQL
+
+![SQL vs NoSQL](assets/images/Section%2010%20-%20SQL%20vs%20NoSQL.png)
+
+### What's SQL
+
+![What's SQL](assets/images/Section%2010%20-%20What's%20SQL.png)
+
+### Core SQL Database Characteristics
+
+![Core SQL Database Characteristics](assets/images/Section%2010%20-%20Core%20SQL%20Database%20Characteristics.png)
+
+### SQL Queries
+
+![SQL Queries](assets/images/Section%2010%20-%20SQL%20Queries.png)
