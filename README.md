@@ -77,8 +77,8 @@ Model View Controller (MVC): Model + View -> Controller -> Routes
   - [Section 10 : SQL - Structure Query Language](#section-10--sql---structure-query-language)
     - [SQL vs NoSQL](#sql-vs-nosql)
     - [What's SQL](#whats-sql)
-    - [Core SQL Database Characteristics](#core-sql-database-characteristics)
-    - [SQL Queries](#sql-queries)
+    - [What's NoSQL](#whats-nosql)
+    - [How to use](#how-to-use)
 
 ## Section 3: Understanding the Basics
 
@@ -369,14 +369,66 @@ app.set("views", "section-6/views");
 
 ![SQL vs NoSQL](assets/images/Section%2010%20-%20SQL%20vs%20NoSQL.png)
 
+![SQL vs NoSQL-2](assets/images/Section%2010%20-%20SQL%20vs%20NoSQL-2.png)
+
+![Horizontal vs Vertical Scaling](assets/images/Section%2010%20-%20Horizontal%20vs%20Vertical%20Scaling.png)
+
 ### What's SQL
 
 ![What's SQL](assets/images/Section%2010%20-%20What's%20SQL.png)
 
-### Core SQL Database Characteristics
-
 ![Core SQL Database Characteristics](assets/images/Section%2010%20-%20Core%20SQL%20Database%20Characteristics.png)
 
-### SQL Queries
-
 ![SQL Queries](assets/images/Section%2010%20-%20SQL%20Queries.png)
+
+### What's NoSQL
+
+![What's NoSQL](assets/images/Section%2010%20-%20What's%20NoSQL.png)
+
+![NoSQL](assets/images/Section%2010%20-%20NoSQL.png)
+
+![NoSQL Characteristics](assets/images/Section%2010%20-%20NoSQL%20Characteristics.png)
+
+### How to use
+
+```js
+// util/database.js
+const mysql = require("mysql2");
+
+const pool = mysql.createPool({
+  host: "localhost",
+  user: "root",
+  database: "node_complete",
+  password: "Nghi@0934118566",
+});
+
+module.exports = pool.promise();
+```
+
+```js
+// models/product.js
+module.exports = class Product(
+  constructor(id, title, imageUrl, description, price) {
+    this.id = id;
+    this.title = title;
+    this.imageUrl = imageUrl;
+    this.description = description;
+    this.price = price;
+  }
+
+  save() {
+    return db.execute(
+      "INSERT INTO products (title, price, imageUrl, description) VALUES (?, ?, ?, ?)",
+      [this.title, this.price, this.imageUrl, this.description]
+    );
+  }
+
+  static fetchAll(cb) {
+    return db.execute("SELECT * FROM products");
+  }
+
+  static findById(id, cb) {
+    return db.execute("SELECT * FROM products WHERE products.id = ?", [id]);
+  }
+)
+```
