@@ -79,6 +79,7 @@ Model View Controller (MVC): Model + View -> Controller -> Routes
     - [What's SQL](#whats-sql)
     - [What's NoSQL](#whats-nosql)
     - [How to use](#how-to-use)
+  - [Section 11: Sequelize](#section-11-sequelize)
 
 ## Section 3: Understanding the Basics
 
@@ -432,3 +433,9 @@ module.exports = class Product(
   }
 )
 ```
+
+## Section 11: Sequelize
+
+![What is Sequelize](assets/images/Section%2011%20-%20What%20is%20Sequelize?.png)
+
+![Core Concept](assets/images/Section%2011%20-%20Core%20Concept.png)

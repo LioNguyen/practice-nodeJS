@@ -1,23 +1,3 @@
-// const mysql = require("mysql2");
-
-// const pool = mysql.createPool({
-//   host: "localhost",
-//   user: "root",
-//   database: "node_complete",
-//   password: "Nghi@0934118566",
-// });
-
-// module.exports = pool.promise();
-
-// const Sequelize = require("sequelize");
-
-// const sequelize = new Sequelize("node_complete", "root", "Nghi@0934118566", {
-//   dialect: "mysql",
-//   host: "localhost",
-// });
-
-// module.exports = sequelize;
-
 const mongodb = require("mongodb");
 const MongoClient = mongodb.MongoClient;
 
