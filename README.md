@@ -80,6 +80,10 @@ Model View Controller (MVC): Model + View -> Controller -> Routes
     - [What's NoSQL](#whats-nosql)
     - [How to use](#how-to-use)
   - [Section 11: Sequelize](#section-11-sequelize)
+  - [Section 12: Mongodb](#section-12-mongodb)
+  - [Section 13: Mongoose](#section-13-mongoose)
+    - [How to connect mongodb \& get data with mongoose](#how-to-connect-mongodb--get-data-with-mongoose)
+    - [Example](#example)
 
 ## Section 3: Understanding the Basics
 
@@ -439,3 +443,156 @@ module.exports = class Product(
 ![What is Sequelize](assets/images/Section%2011%20-%20What%20is%20Sequelize?.png)
 
 ![Core Concept](assets/images/Section%2011%20-%20Core%20Concept.png)
+
+## Section 12: Mongodb
+
+[Playground](https://www.mycompiler.io/view/2YMzssHzxIk)
+
+## Section 13: Mongoose
+
+[Document](https://mongoosejs.com/docs/index.html)
+
+[Document: MongoDB with Mongoose](https://www.mongodb.com/developer/languages/javascript/getting-started-with-mongodb-and-mongoose/)
+
+[Playground](https://playground.mongoosejs.io/#)
+
+### How to connect mongodb & get data with mongoose
+
+```js
+// 1. Connect db
+await mongoose.connect(DB_URL);
+
+// 2. Create Schema
+const testSchema = new mongoose.Schema({
+  name: {
+    type: String,
+    required: true,
+  },
+  cart: {
+    items: [
+      {
+        productId: {
+          type: Schema.Types.ObjectId, // Id type from Schema
+          ref: "Product", // Link productId in testSchema with productSchema
+          required: true,
+        },
+        quantity: { type: Number, required: true },
+      },
+    ],
+  },
+});
+
+// 3. Create Schema Methods
+testSchema.methods.findItem = function (product) {
+  const foundItem = this.cart.items.find(
+    (item) => item.productId === product._id.toString()
+  );
+  return foundItem;
+};
+
+// 4. Create Model from Schema
+const TestModel = mongoose.model("Test", testSchema);
+
+// 5. Insert data
+const doc = new TestModal({ name: "test" });
+await doc.save();
+
+// 6. Methods
+await TestModal.find(); // -> get data => return Query
+await TestModal.find().select("name"); // -> select field to show
+await TestModal.find().populate("userId"); // -> get data from UserModel to integrate into TestModal
+await TestModal.findById(testId); // -> search item by id
+await TestModal.findByIdAndRemove(testId); // -> delete item
+```
+
+### Example
+
+```js
+// ./app.js
+mongoose
+  .connect(mongodbData.url)
+  .then((result) => {
+    User.findOne().then((user) => {
+      if (!user) {
+        const user = new User({
+          name: "Lio",
+          email: "lio@test.com",
+          cart: {
+            items: [],
+          },
+        });
+        user.save();
+      }
+    });
+    app.listen(3001);
+  })
+  .catch((err) => {
+    console.log(err);
+  });
+```
+
+```js
+// ./models/product.js
+const mongoose = require("mongoose");
+
+const Schema = mongoose.Schema;
+
+const productSchema = new Schema({
+  title: {
+    type: String,
+    required: true,
+  },
+  price: {
+    type: Number,
+    required: true,
+  },
+  userId: {
+    type: Schema.Types.ObjectId,
+    ref: "User",
+    required: true,
+  },
+});
+
+module.exports = mongoose.model("Product", productSchema);
+```
+
+```js
+// ./controllers/admin.js
+const Product = require("../models/product");
+
+exports.getProducts = (req, res, next) => {
+  Product.find()
+    .select("title price -_id")
+    .populate("userId", "name")
+    .then((products) => {
+      res.render("admin/products", {
+        prods: products,
+        pageTitle: "Admin Products",
+        path: "/admin/products",
+      });
+    })
+    .catch((err) => console.log(err));
+};
+
+exports.postAddProduct = (req, res, next) => {
+  const title = req.body.title;
+  const price = req.body.price;
+  const description = req.body.description;
+  const product = new Product({
+    title: title,
+    price: price,
+    description: description,
+    userId: req.user,
+  });
+  product
+    .save()
+    .then((result) => {
+      // console.log(result);
+      console.log("Created Product");
+      res.redirect("/admin/products");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
+```
